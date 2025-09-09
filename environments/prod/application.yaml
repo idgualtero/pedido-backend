@@ -1,0 +1,23 @@
+# yaml
+# filepath: enviroments/prod/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pedido-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/tu-usuario/tu-repo.git'
+    targetRevision: HEAD
+    path: charts/pedido-app
+    helm:
+      valueFiles:
+        - ../../environments/prod/values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: my-tech
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
