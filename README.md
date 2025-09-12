@@ -19,18 +19,28 @@ mvn clean package
 docker build -t idgualtero/pedido-backend:latest .
 docker push idgualtero/pedido-backend:latest
 
+Url del docker hub
+https://hub.docker.com/repositories/idgualtero
+
 Comandos para genera helm
 
 Empaquetar en la carpeta charts
 cd charts
-helm package pedido-app
+
+actualizar info dependencias para postgres
+
+helm dependency update pedido-app
+
+helm package pedido-app -> genera el tgz
+
+helm repo index . --url https://idgualtero.github.io/helm-charts/charts  -> Genera el index.yaml
 Se generar archivos index.yaml y pedido-app-0.1.0.tgz que se deben llevar al repo https://github.com/idgualtero/helm-charts rama gh-pages y versionar alla.
 
-
-Indexar
-helm repo index . --url https://idgualtero.github.io/helm-charts/charts
 
 Agregar al cluste de Helm
 
 helm repo add pedido-app https://idgualtero.github.io/helm-charts/charts
 helm repo update
+
+Si se quiere borrar algo de helm 
+helm repo remove pedido-app
