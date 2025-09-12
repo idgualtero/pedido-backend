@@ -1,5 +1,5 @@
 
-Informacion para la BD de Postgres
+# Informacion para la BD de Postgres
 
 CREATE DATABASE pedidos;
 CREATE USER admin WITH PASSWORD 'supersecret';
@@ -14,33 +14,57 @@ CREATE TABLE pedido (
 );
 
 
-Comandos usados para compilar y publicar en dockerhub
+# Comandos usados para compilar y publicar en dockerhub
+## Generar jar de la app
+```
 mvn clean package
+```
+## Constuir imagen
+```
 docker build -t idgualtero/pedido-backend:latest .
+```
+## Subir imagen a Dockerhub
+```
 docker push idgualtero/pedido-backend:latest
+```
 
-Url del docker hub
+### Url del docker hub
 https://hub.docker.com/repositories/idgualtero
 
-Comandos para genera helm
+# Comandos para genera helm
 
 Empaquetar en la carpeta charts
+## Acceder a la carpeta carts
+```
 cd charts
-
-actualizar info dependencias para postgres
-
+```
+##  Genera los archivos gtz de postgres que son dependencia
+```
 helm dependency update pedido-app
+```
+## genera el tgz de la aplicacion 
 
-helm package pedido-app -> genera el tgz
+```
+helm package pedido-app
+```
+##  Genera el index.yaml
+```
+helm repo index . --url https://idgualtero.github.io/helm-charts/charts
+```
+ 
 
-helm repo index . --url https://idgualtero.github.io/helm-charts/charts  -> Genera el index.yaml
-Se generar archivos index.yaml y pedido-app-0.1.0.tgz que se deben llevar al repo https://github.com/idgualtero/helm-charts rama gh-pages y versionar alla.
+Los archivos index.yaml y pedido-app-0.1.0.tgz que se generaron se deben llevar al repo https://github.com/idgualtero/helm-charts en la rama gh-pages y dejarlos en la carpeta charts y versionar alla.
 
 
-Agregar al cluste de Helm
-
+## Agregar al cluste de Helm
+```
 helm repo add pedido-app https://idgualtero.github.io/helm-charts/charts
+```
+```
 helm repo update
+```
 
-Si se quiere borrar algo de helm 
+## Si se quiere borrar algo de helm 
+```
 helm repo remove pedido-app
+```
