@@ -1,6 +1,6 @@
 backend:
   image:
-    repository: tu-backend-image
+    repository: idgualtero/pedido-backend
     tag: latest
   replicas: 2
   resources:
