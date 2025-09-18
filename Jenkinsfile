@@ -24,20 +24,22 @@ pipeline {
                 sh "docker push ${DOCKER_IMAGE}:${TAG}"
             }
         }
-        // stage('Update Helm Chart') {
-        //     steps {
-        //         script {
-        //             sh '''
-        //             cd helm-charts
-        //             sed -i "s/tag: .*/tag: ${TAG}/" values.yaml
-        //             git config user.email "jenkins@local"
-        //             git config user.name "Jenkins"
-        //             git add values.yaml
-        //             git commit -m "Update image tag to ${TAG}"
-        //             git push
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Update Helm Chart') {
+            steps {
+                script {
+                    sh '''
+                    rm -rf helm-charts
+                    git clone git@github.com:idgualtero/helm-charts.git
+                    cd helm-charts/charts/pedido-app
+                    sed -i "s/tag: .*/tag: ${TAG}/" values.yaml
+                    git config user.email "jenkins@local"
+                    git config user.name "Jenkins"
+                    git add values.yaml
+                    git commit -m "Update image tag to ${TAG}"
+                    git push origin main
+                    '''
+                }
+            }
+        }
     }
 }
