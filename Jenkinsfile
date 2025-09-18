@@ -29,7 +29,7 @@ pipeline {
                 script {
                     sh '''
                     rm -rf helm-charts
-                    git clone git@github.com:idgualtero/helm-charts.git
+                    git clone https://github.com/idgualtero/helm-charts.git
                     cd helm-charts/charts/pedido-app
                     sed -i "s/tag: .*/tag: ${TAG}/" values.yaml
                     git config user.email "jenkins@local"
