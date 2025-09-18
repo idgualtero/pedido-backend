@@ -1,0 +1,5 @@
+com/usabana/pedido/model/Pedido.class
+com/usabana/pedido/service/PedidoService.class
+com/usabana/pedido/repository/PedidoRepository.class
+com/usabana/pedido/controller/PedidoController.class
+com/usabana/pedido/PedidoApplication.class
