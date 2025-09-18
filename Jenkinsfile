@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE}:${TAG} pedido-backend"
+                sh "docker build -t ${DOCKER_IMAGE}:${TAG} ."
             }
         }
         stage('Push to Docker Hub') {
