@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE}:${TAG} ."
+                sh "docker build -t ${DOCKER_IMAGE}:${TAG} backend"
             }
         }
         stage('Push to Docker Hub') {
