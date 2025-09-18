@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') // Cambia el ID
-        DOCKER_IMAGE = 'ctorres437/pedido-backend'
+        DOCKER_IMAGE = 'rougev/pedido-backend'
         TAG = "${env.BUILD_NUMBER}"
     }
 
